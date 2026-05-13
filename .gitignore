@@ -1,0 +1,29 @@
+# PlatformIO build artifacts
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Local secrets — never commit Wi-Fi credentials, API keys, etc.
+secrets.h
+secrets.json
+secrets.toml
+*.local.*
+.env
+
+# Per-board fleet provisioning log (contains MAC addresses)
+fleet-log.csv
+
+# Editor scratch
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Python (for esptool/espflash venv etc.)
+__pycache__/
+*.pyc
+venv/
+.venv/

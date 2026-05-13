@@ -1,0 +1,18 @@
+{
+  "name": "esp32-rnd · blink",
+  "version": "0.1.0",
+  "home_assistant_domain": "",
+  "funding_url": "",
+  "new_install_prompt_erase": false,
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "https://github.com/hjawhar/esp32-rnd/releases/latest/download/blink.factory.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}

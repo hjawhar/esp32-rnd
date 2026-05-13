@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>esp32-rnd · install</title>
+<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+<style>
+  :root {
+    --fg: #0d1117;
+    --bg: #ffffff;
+    --muted: #57606a;
+    --border: #d0d7de;
+    --accent: #0969da;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg: #e6edf3; --bg: #0d1117; --muted: #8b949e; --border: #30363d; --accent: #58a6ff; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+  }
+  main { max-width: 640px; width: 100%; }
+  h1 { margin: 0 0 .25rem; font-size: 1.75rem; }
+  h2 { margin: 2.5rem 0 .5rem; font-size: 1.15rem; }
+  p, li { color: var(--fg); }
+  .muted { color: var(--muted); margin: 0 0 2rem; }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+  .card h3 { margin: 0 0 .25rem; font-size: 1rem; }
+  .card p { margin: 0 0 1rem; color: var(--muted); font-size: .9rem; }
+  esp-web-install-button { display: inline-block; }
+  esp-web-install-button[disabled] { opacity: .5; }
+  .browser-warning {
+    background: #fff8c5;
+    color: #4a3000;
+    border: 1px solid #d4a72c;
+    border-radius: 6px;
+    padding: .75rem 1rem;
+    font-size: .9rem;
+    margin: 1rem 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    .browser-warning { background: #3d2e00; color: #f1e1a3; border-color: #634c00; }
+  }
+  code {
+    font: 0.85em/1.4 ui-monospace, "SF Mono", monospace;
+    background: rgba(175, 184, 193, 0.2);
+    padding: .15em .35em;
+    border-radius: 4px;
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>esp32-rnd</h1>
+  <p class="muted">Flash an ESP32-S3 board with one of these firmwares directly from your browser. No installation required.</p>
+
+  <noscript><div class="browser-warning">This page needs JavaScript.</div></noscript>
+  <div class="browser-warning" id="browser-check" style="display:none">
+    Your browser doesn't support <a href="https://developer.mozilla.org/docs/Web/API/Web_Serial_API">WebSerial</a>.
+    Use <strong>Chrome</strong> or <strong>Edge</strong> on desktop. Safari and Firefox don't work.
+  </div>
+
+  <div class="card">
+    <h3>blink</h3>
+    <p>Cycle the onboard RGB LED red → green → blue.</p>
+    <esp-web-install-button manifest="./manifest-blink.json">
+      <button slot="activate">Install</button>
+    </esp-web-install-button>
+  </div>
+
+  <div class="card">
+    <h3>wifi-hello</h3>
+    <p>Connect to your Wi-Fi and print the assigned IP over USB serial. Wi-Fi credentials are not embedded — open serial monitor (115200 baud) and follow the prompt, or rebuild from source with <code>secrets.h</code> filled in.</p>
+    <esp-web-install-button manifest="./manifest-wifi.json">
+      <button slot="activate">Install</button>
+    </esp-web-install-button>
+  </div>
+
+  <h2>How this works</h2>
+  <p>
+    Your browser uses the <a href="https://developer.mozilla.org/docs/Web/API/Web_Serial_API">WebSerial API</a> to talk directly to the chip over USB, running a JavaScript port of <code>esptool</code>. Nothing gets installed on your computer.
+  </p>
+
+  <h2>Source</h2>
+  <p>
+    All code at <a href="https://github.com/hjawhar/esp32-rnd">github.com/hjawhar/esp32-rnd</a>. To build your own firmware from source see the repo <a href="https://github.com/hjawhar/esp32-rnd#readme">README</a>.
+  </p>
+</main>
+
+<script>
+  // Surface a friendly note if the browser doesn't support WebSerial.
+  if (!("serial" in navigator)) {
+    document.getElementById("browser-check").style.display = "block";
+  }
+</script>
+</body>
+</html>
