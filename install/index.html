@@ -89,6 +89,22 @@
     </esp-web-install-button>
   </div>
 
+  <details class="card">
+    <summary><strong>Install fails with "Failed to initialize"?</strong></summary>
+    <p style="margin-top:.75rem">
+      Means the chip didn't enter download mode. Most dev boards: hold the <code>BOOT</code> button while clicking Install. <strong>On some clone boards (ESP32-S3-WROOM-1 N16R8 44-pin clones, etc.) the BOOT button isn't wired to GPIO0</strong> — instead, manually force download mode:
+    </p>
+    <ol>
+      <li>Bridge <code>IO0</code> (the header pin labeled <code>0</code>) <strong>to <code>GND</code></strong> with a wire/paperclip — keep them in contact</li>
+      <li>While the wire is in place, tap <code>RST/EN</code> once</li>
+      <li>Remove the wire — chip is now in download mode</li>
+      <li>Click <strong>Install</strong> again</li>
+    </ol>
+    <p style="color:var(--muted);font-size:.85em">
+      ⚠️ Never touch the wire to pins labeled <code>3V3</code>, <code>5V</code>, <code>VBUS</code>, or <code>VIN</code> — shorting them to ground can damage the board.
+    </p>
+  </details>
+
   <h2>How this works</h2>
   <p>
     Your browser uses the <a href="https://developer.mozilla.org/docs/Web/API/Web_Serial_API">WebSerial API</a> to talk directly to the chip over USB, running a JavaScript port of <code>esptool</code>. Nothing gets installed on your computer.
