@@ -9,7 +9,7 @@
       "chipFamily": "ESP32-S3",
       "parts": [
         {
-          "path": "https://github.com/hjawhar/esp32-rnd/releases/latest/download/wifi.factory.bin",
+          "path": "./firmware/wifi.factory.bin",
           "offset": 0
         }
       ]

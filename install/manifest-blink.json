@@ -9,7 +9,7 @@
       "chipFamily": "ESP32-S3",
       "parts": [
         {
-          "path": "https://github.com/hjawhar/esp32-rnd/releases/latest/download/blink.factory.bin",
+          "path": "./firmware/blink.factory.bin",
           "offset": 0
         }
       ]
